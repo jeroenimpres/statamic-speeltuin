@@ -1,0 +1,29 @@
+title: Onze Klanten
+fields:
+  -
+    handle: title
+    field:
+      input_type: text
+      antlers: false
+      display: Title
+      type: text
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false
+  -
+    handle: onze_klanten
+    field:
+      mode: default
+      create: true
+      collections:
+        - onze_klanten
+      display: Onze Klanten
+      type: entries
+      icon: entries
+      instructions: 'Select entries or leave empty to show all.'
+      listable: hidden
+      instructions_position: below
+      visibility: visible
+      always_save: false

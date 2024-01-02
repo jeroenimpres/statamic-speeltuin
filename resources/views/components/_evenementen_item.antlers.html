@@ -1,0 +1,30 @@
+{{#
+    @name Evenementen item
+    @desc A Evenementen item component.
+    @param class Add optional CSS classes.
+#}}
+
+<!-- /components/_evenementen_item.antlers.html -->
+<article class="flex flex-col {{ class }}">
+    <figure class="mb-4">
+        {{ partial:statamic-peak-tools::components/picture :image="image" sizes="(min-width: 1280px) 430px, (min-width: 768px) 30vw, 90vw" aspect_ratio="3/2" lazy="true" cover="true" class="aspect-[3/2]" }}
+    </figure>
+
+    <div class="flex flex-col gap-y-2">
+        <time lang="{{ site:short_locale }}">
+            {{ partial:typography/time as="span" :content="evenement_date_start" }}
+            {{ partial:typography/time as="span" :content="evenement_date_start" format="h:mm" }} -
+            {{ if { evenement_date_start | iso_format('D MMMM') } !== { evenement_date_end | iso_format('D MMMM') } }}
+                {{ partial:typography/time as="span" :content="evenement_date_end" }}
+            {{ /if }}
+            {{ partial:typography/time as="span" :content="evenement_date_end" format="h:mm" }}
+        </time>
+
+        <a href="{{ url }}" class="group p-1 -m-1 focus:outline-none focus-visible:ring-2 ring-primary group">
+            {{ partial:typography/h3 :content="title" class="underline decoration-primary decoration-2 underline-offset-2 group-hover:text-primary motion-safe:transition-colors" }}
+        </a>
+
+        {{ partial:typography/p :content="teaser" }}
+    </div>
+</article>
+<!-- End: /components/_evenementen_item.antlers.html -->

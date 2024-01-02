@@ -1,0 +1,27 @@
+{{#
+    @name Nieuws
+    @desc The Nieuws page builder block.
+    @set page.page_builder.nieuws
+#}}
+
+<!-- /page_builder/_nieuws.antlers.html -->
+<section class="fluid-container grid md:grid-cols-12 gap-8">
+    {{ title ?= { partial:typography/h1 as="h2" :content="title" class="md:col-span-12" } }}
+
+    {{ collection:nieuws sort="date:desc" limit="3" as="items" }}
+        {{ unless no_results }}
+            {{ items }}
+                {{ partial:components/nieuws_item class="md:col-span-4" }}
+            {{ /items }}
+        {{ else }}
+            <div class="md:col-span-6">
+                {{ trans:strings.no_results }}
+            </div>
+        {{ /if }}
+    {{ /collection:nieuws }}
+
+    <nav class="md:col-span-12 text-right">
+        {{ partial:components/button label="{trans:strings.nieuws_all}" button_type="inline" link_type="url" url="{mount_url:nieuws}" }}
+    </nav>
+</section>
+<!-- End: /page_builder/_nieuws.antlers.html -->

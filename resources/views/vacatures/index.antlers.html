@@ -1,0 +1,32 @@
+{{#
+    @name Vacatures index
+    @desc The Vacatures index template.
+#}}
+
+<!-- /vacatures/index.antlers.html -->
+<main class="py-12 md:py-16 lg:py-24 stack-12 md:stack-16 lg:stack-24" id="content">
+    {{ page_builder scope="block" }}
+        {{ partial src="page_builder/{type}" }}
+    {{ /page_builder }}
+</main>
+<!-- End: /vacatures/index.antlers.html -->
+
+{{ section:index_content }}
+    <!-- /vacatures/index.antlers.html -->
+    <div class="fluid-container grid md:grid-cols-12 gap-12">
+        {{ collection:vacatures sort="date:desc" paginate="true" limit="12" as="items" expires:is_after="{today}" }}
+            {{ unless no_results }}
+                {{ items }}
+                    {{ partial:components/vacatures_item class="md:col-span-6" }}
+                {{ /items }}
+            {{ else }}
+                <div class="md:col-span-6">
+                    {{ trans:strings.no_results }}
+                </div>
+            {{ /unless }}
+            {{ partial:statamic-peak-tools::components/pagination class="md:col-span-12" }}
+        {{ /collection:vacatures }}
+    </div>
+    <!-- End: /vacatures/index.antlers.html -->
+{{ /section:index_content }}
+<!-- End: /vacatures/index.antlers.html -->

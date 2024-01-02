@@ -1,0 +1,28 @@
+title: Teamleden
+fields:
+  -
+    handle: title
+    field:
+      input_type: text
+      type: text
+      localizable: true
+      listable: hidden
+      display: Title
+  -
+    handle: text
+    field: common.text_plain
+  -
+    handle: teamleden
+    field:
+      mode: default
+      create: true
+      collections:
+        - teamleden
+      display: Teamleden
+      type: entries
+      icon: entries
+      listable: hidden
+      instructions_position: below
+      instructions: 'Select entries or leave empty to show all.'
+      visibility: visible
+      always_save: false

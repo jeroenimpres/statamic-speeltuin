@@ -1,0 +1,26 @@
+{{#
+    @name Vacatures item
+    @desc A Vacatures item component.
+    @param class Add optional CSS classes.
+#}}
+
+<!-- /components/_vacatures.item.antlers.html -->
+<article class="flex flex-col {{ class }}">
+    <figure class="aspect-[3/2] mb-4">
+        {{ partial:statamic-peak-tools::components/picture :image="image" sizes="(min-width: 1280px) 430px, (min-width: 768px) 30vw, 90vw" aspect_ratio="3/2" lazy="true" cover="true" }}
+    </figure>
+
+    <div class="flex flex-col gap-y-2">
+        <a href="{{ url }}" class="group p-1 -m-1 focus:outline-none focus-visible:ring-2 ring-primary">
+            {{ partial:typography/h3 content="{ title } - { hours } { trans:strings.vacatures_hours }" class="mb-4 underline decoration-primary decoration-2 underline-offset-2 group-hover:text-primary motion-safe:transition-colors" }}
+        </a>
+
+        <div class="flex flex-col">
+            <span>{{ trans:strings.vacatures_published }}: {{ partial:typography/time :content="date" }}</span>
+            <span>{{ trans:strings.vacatures_expires }}: {{ partial:typography/time :content="expires" }}</span>
+        </div>
+
+        {{ partial:typography/p :content="teaser" }}
+    </div>
+</article>
+<!-- End: /components/_vacatures.item.antlers.html -->

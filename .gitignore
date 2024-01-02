@@ -1,47 +1,22 @@
-# Local development
-.env
-.env.backup
-.phpunit.result.cache
-.antlers.json
-.idea
-.DS_Store
-.unison*
-
-# Common vendor resources
 /node_modules
-/vendor
-
-# Logfiles
-npm-debug.log
-yarn-error.log
-
-# Statamic Public folder
 /public/hot
 /public/storage
 /public/vendor/statamic
 /public/img/
 /public/static/
-/public/build/
-/public/assets
-/content/collections/aanbiederactiviteiten/*.md
-/content/collections/aanbiedingen/*.md
-/content/collections/aanbodtags/*.md
-/content/collections/activiteiten/*.md
-data.ms/
-
-# Statamic Public folder
-/public/assets/*
-!/public/assets/uploads
-!/public/assets/.gitkeep
-/public/favicons/
-public/mix-manifest.json
-/users
-# Statamic storage
 /storage/*.key
-
-#maizzle
-/resources/emails/maizzle/.editconfig
-/resources/emails/maizzle/.gitignore
-/resources/emails/maizzle/node_modules
-/resources/views/emails
-/.ddev/homeadditions/.composer/auth.json
+/vendor
+.env
+.env.backup
+/.phpunit.cache
+.antlers.json
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea/.gitignore
+/.idea/laravel-idea.xml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/statamic-speeltuin.iml
+/.idea/vcs.xml

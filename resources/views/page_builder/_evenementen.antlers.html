@@ -1,0 +1,27 @@
+{{#
+    @name Evenementen
+    @desc The Evenementen page builder block.
+    @set page.page_builder.evenementen
+#}}
+
+<!-- /page_builder/_evenementen.antlers.html -->
+<section class="fluid-container grid md:grid-cols-12 gap-8">
+    {{ title ?= { partial:typography/h1 as="h2" :content="title" class="md:col-span-12" } }}
+
+    {{ collection:evenementen sort="evenement_date_start:asc" evenement_date_end:is_after="{ today | modify_date('+1 day') }" limit="3" as="items" }}
+        {{ unless no_results }}
+            {{ items }}
+                {{ partial:components/evenementen_item class="md:col-span-4" }}
+            {{ /items }}
+        {{ else }}
+            <div class="md:col-span-6">
+                {{ trans:strings.no_results }}
+            </div>
+        {{ /unless }}
+    {{ /collection:evenementen }}
+
+    <nav class="md:col-span-12 text-right">
+        {{ partial:components/button label="{trans:strings.evenementen_all}" button_type="inline" link_type="url" url="{mount_url:evenementen}" }}
+    </nav>
+</section>
+<!-- End: /page_builder/_evenementen.antlers.html -->

@@ -1,0 +1,39 @@
+title: Columns
+fields:
+  -
+    handle: columns
+    field:
+      reorderable: true
+      type: replicator
+      localizable: true
+      listable: hidden
+      display: 'Columns'
+      replicator_preview: false
+      instructions_position: above
+      visibility: visible
+      collapse: accordion
+      previews: true
+      fullscreen: true
+      sets:
+        columns:
+          display: Columns
+          instructions: null
+          icon: null
+          sets:
+            column:
+              display: Column
+              instructions: null
+              icon: null
+              fields:
+                -
+                  handle: image
+                  field: common.image
+                -
+                  handle: text
+                  field: common.text_rich
+                  config:
+                    validate:
+                      - required
+                -
+                  import: buttons
+      hide_display: true

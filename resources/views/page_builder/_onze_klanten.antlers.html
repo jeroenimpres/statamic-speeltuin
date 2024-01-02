@@ -1,0 +1,23 @@
+{{#
+    @name Onze Klanten
+    @desc The Onze Klanten page builder block.
+    @set page.page_builder.onze_klanten
+#}}
+
+<!-- /page_builder/_onze_klanten.antlers.html -->
+<section class="fluid-container grid grid-cols-2 md:grid-cols-10 gap-12 place-items-center">
+    {{ block:title ?= { partial:typography/h2 :content="block:title" class="col-span-2 md:col-span-12" } }}
+
+    {{
+        onze_klanten = block:onze_klanten
+            ? block:onze_klanten
+            : { collection:onze_klanten sort="order" }
+    }}
+
+    {{ onze_klanten }}
+        <a class="md:col-span-2 p-1 -m-1 hover:scale-105 motion-safe:transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-primary group" href="{{ website }}" target="_blank" rel="noopener" aria-label="{{ title }}">
+            {{ partial:statamic-peak-tools::components/picture :image="logo" class="grayscale group-focus-visible:grayscale-0 group-hover:grayscale-0 motion-safe:transition" }}
+        </a>
+    {{ /onze_klanten }}
+</section>
+<!-- End: /page_builder/_onze_klanten.antlers.html -->

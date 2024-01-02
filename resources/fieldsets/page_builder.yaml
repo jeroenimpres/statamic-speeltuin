@@ -1,0 +1,151 @@
+title: 'Page builder'
+fields:
+  -
+    handle: page_builder
+    field:
+      type: replicator
+      localizable: true
+      hide_display: true
+      collapse: true
+      listable: false
+      display: 'Page builder'
+      sets:
+        interactive:
+          display: Interactive
+          instructions: 'Interactive blocks.'
+          icon: programming-script-code
+          sets:
+            call_to_action:
+              display: 'Call to action'
+              instructions: 'Show a call to action.'
+              icon: alert-alarm-bell
+              fields:
+                -
+                  import: call_to_action
+            cards:
+              display: Cards
+              instructions: 'Cards that link using the button fieldset.'
+              icon: link
+              fields:
+                -
+                  import: cards
+            collection:
+              display: Collection
+              instructions: 'Show collection entries.'
+              icon: file-content-list
+              fields:
+                -
+                  import: collection
+            columns:
+              display: Columns
+              instructions: 'Text columns with optional images and buttons.'
+              icon: layout-three-columns
+              fields:
+                -
+                  import: columns
+            divider:
+              display: Divider
+              instructions: 'A visual divider between blocks.'
+              icon: layout-table-row-insert
+              fields:
+                -
+                  import: divider
+            evenementen:
+              display: Evenementen
+              instructions: 'List upcoming Evenementen.'
+              icon: calendar-date
+              fields:
+                -
+                  import: evenementen
+            faq:
+              display: FAQ
+              instructions: 'List frequently asked questions in an accordion.'
+              icon: alert-help-question
+              fields:
+                -
+                  import: faq
+            form:
+              display: Form
+              instructions: 'Select and render a form.'
+              icon: mail-chat-bubble-text
+              fields:
+                -
+                  import: form
+            full_width_image:
+              display: 'Full width image'
+              instructions: 'A full width image with optional text and button(s).'
+              icon: media-image-picture-orientation
+              fields:
+                -
+                  import: full_width_image
+            image_and_text:
+              display: 'Image and text'
+              instructions: 'An image and text side by side.'
+              icon: text-formatting-image-left
+              fields:
+                -
+                  import: image_and_text
+            images_grid:
+              display: 'Images grid'
+              instructions: 'A multi row image grid.'
+              icon: layout-grid-dots
+              fields:
+                -
+                  import: images_grid
+            index_content:
+              display: 'Index content'
+              instructions: 'Render the currently mounted entries if available.'
+              icon: file-content-list
+              fields:
+                -
+                  import: index_content
+            nieuws:
+              display: Nieuws
+              instructions: 'List the most recent Nieuws.'
+              icon: share-mega-phone
+              fields:
+                -
+                  import: nieuws
+            onze_klanten:
+              display: 'Onze Klanten'
+              instructions: 'A Onze Klanten logo cloud.'
+              icon: favorite-award
+              fields:
+                -
+                  import: onze_klanten
+            teamleden:
+              display: Teamleden
+              instructions: 'List Teamleden.'
+              icon: user-multiple
+              fields:
+                -
+                  import: teamleden
+        text:
+          display: Text
+          instructions: 'Text based blocks.'
+          icon: text-formatting-initial-letter
+          sets:
+            article:
+              display: Article
+              instructions: 'Long form content, can be expanded with media like figures, video, quotes or tables.'
+              icon: text-formatting-image-bottom
+              fields:
+                -
+                  import: article
+            image_credits:
+              display: 'Image credits'
+              instructions: 'List images with their credits.'
+              icon: content-book-open
+              fields:
+                -
+                  import: image_credits
+            text_columns:
+              display: 'Text columns'
+              instructions: 'Text wrapping in two columns.'
+              icon: layout-three-columns
+              fields:
+                -
+                  import: text_columns
+      instructions_position: above
+      visibility: visible
+      previews: true
