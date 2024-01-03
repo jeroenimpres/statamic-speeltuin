@@ -1,0 +1,19 @@
+{
+    "name": "impres/translatee",
+    "autoload": {
+        "psr-4": {
+            "Impres\\Translatee\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Translatee",
+            "description": "Translatee addon"
+        },
+        "laravel": {
+            "providers": [
+                "Impres\\Translatee\\ServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,14 +1,19 @@
 title: Vacatures
-route: '/{mount}/{slug}'
-layout: layout
+sites:
+  - default
+  - en
+  - fr
+propagate: false
 template: vacatures/show
+layout: layout
+mount: ee4ff0e0-8170-425c-be27-1de5c3ec4e2f
 revisions: false
+route: '/{mount}/{slug}'
 date: true
 sort_dir: desc
 date_behavior:
-    past: public
-    future: private
-mount: ee4ff0e0-8170-425c-be27-1de5c3ec4e2f
+  past: public
+  future: private
 preview_targets:
   -
     label: Entry

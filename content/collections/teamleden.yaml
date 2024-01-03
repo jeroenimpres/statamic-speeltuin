@@ -1,4 +1,9 @@
 title: Teamleden
+sites:
+  - default
+  - en
+  - fr
+propagate: false
 template: default
 layout: layout
 revisions: false

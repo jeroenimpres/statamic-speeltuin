@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3aa293619718686bfb3e3fa2202c25a7",
+    "content-hash": "9a3a925cbb9c42d63eca8c82ace2cdc7",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -1790,6 +1790,35 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "impres/translatee",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "addons/impres/translatee",
+                "reference": "9aa0f129ab2520aa3894caf95eeb01fb02fa5656"
+            },
+            "type": "library",
+            "extra": {
+                "statamic": {
+                    "name": "Translatee",
+                    "description": "Translatee addon"
+                },
+                "laravel": {
+                    "providers": [
+                        "Impres\\Translatee\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Impres\\Translatee\\": "src"
+                }
+            },
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "intervention/image",
@@ -11555,7 +11584,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "impres/translatee": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -1,0 +1,36 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: mooi
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: Mooi
+              icon: text
+              localizable: true
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              replicator_preview: true
+              hide_display: false
+      -
+        display: Copyright
+        instructions: 'Copyright configuration options.'
+        fields:
+          -
+            handle: copyright_name
+            field:
+              input_type: text
+              antlers: false
+              display: 'Copyright name'
+              type: text
+              icon: text
+              instructions: 'Falls back to the application name.'
+              width: 50
+              listable: hidden
+              instructions_position: above

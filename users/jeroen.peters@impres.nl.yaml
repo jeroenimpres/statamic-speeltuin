@@ -2,3 +2,7 @@ name: Jeroen
 super: true
 id: 26981463-18c4-4b8c-b3cb-3ec2ec725bff
 password_hash: $2y$10$eVpsgFHEfS4JfpVjDD4EReokZuqmvjsXY70ljsvylNOdTRn1bFZC.
+preferences:
+  taxonomies:
+    staat:
+      after_save: create_another

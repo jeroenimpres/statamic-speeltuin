@@ -88,6 +88,8 @@ editor:
     - 'edit other authors vacatures entries'
     - 'publish other authors vacatures entries'
     - 'delete other authors vacatures entries'
+    - 'access en site'
+    - 'access fr site'
 marketeer:
   title: Marketeer
   permissions:
@@ -95,6 +97,8 @@ marketeer:
     - 'edit redirects globals'
     - 'edit seo globals'
     - 'access default site'
+    - 'access en site'
+    - 'access fr site'
 user_management:
   title: 'User management'
   permissions:
@@ -107,9 +111,13 @@ user_management:
     - 'assign roles'
     - 'assign user groups'
     - 'access default site'
+    - 'access en site'
+    - 'access fr site'
 form_editor:
   title: 'Form editor'
   permissions:
     - 'configure form fields'
     - 'configure forms'
     - 'access default site'
+    - 'access en site'
+    - 'access fr site'

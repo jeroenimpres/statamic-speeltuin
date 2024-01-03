@@ -1,4 +1,9 @@
 title: FAQ
+sites:
+  - default
+  - en
+  - fr
+propagate: false
 template: default
 layout: layout
 revisions: false
@@ -11,3 +16,4 @@ preview_targets:
   -
     label: Entry
     url: '{permalink}'
+    refresh: true
