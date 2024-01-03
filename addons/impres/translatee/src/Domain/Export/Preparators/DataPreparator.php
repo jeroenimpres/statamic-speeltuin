@@ -2,8 +2,8 @@
 
 namespace Impres\Translatee\Domain\Export\Preparators;
 
-use Impres\Translatee\Actions\GetAdditionalSiteAction;
 use Statamic\Facades\Config;
+use Statamic\Facades\Entry;
 use Statamic\Facades\URL;
 
 class DataPreparator
@@ -44,24 +44,39 @@ class DataPreparator
      */
     public function prepare($data)
     {
-        return $this->splitIntoLocales($data)->map(function ($items, $locale) {
-            // An item can be a Page, a Global, a Collection Entry etc...
+        $split = $this->splitIntoLocales($data);
+
+//        dd($split);
+
+        $henk = $split->map(function ($items, $locale) {
+
             foreach ($items as $index => $item) {
-                $items[$index] = [
-                    'meta' => [
-                        'id' => $item->id(),
-                        'type' => class_basename($item->original),
-                        'url' => URL::prependSiteUrl($item->original->uri(), $item->locale()),
-                        'uri' => $item->locale().$item->original->uri(),
-                        'source-language' => Locale::default(),
-                        'target-language' => $locale,
-                    ],
-                    'fields' => $this->fieldPreparator->prepare($item),
-                ];
+                // An item can be a Global, Term or Collection
+                if(class_basename($item->original) !== 'GlobalSet') {
+                    $items[$index] = $this->prepareEntryOrTermItems($item, $locale);
+                } else {
+                    $items[$index] = $this->prepareEntryOrTermItems($item, $locale);
+                }
             }
 
             return $items;
         });
+        return $henk;
+    }
+
+    private function prepareEntryOrTermItems($item, $locale)
+    {
+        return [
+            'meta' => [
+                'id' => $item->id(),
+                'type' => class_basename($item->original),
+                'source-language' => Config::getDefaultLocale(),
+                'target-language' => $locale,
+                'uri' => $item->locale().$item->original->uri(),
+                'url' => URL::prependSiteUrl($item->original->uri(), $item->locale()),
+            ],
+            'fields' => $this->fieldPreparator->prepare($item),
+        ];
     }
 
     /**
@@ -72,17 +87,28 @@ class DataPreparator
      */
     protected function splitIntoLocales($data)
     {
-        return $this->locales->map(function ($value, $locale) use ($data) {
+        return $data->map(function($page) {
+            $page->original = Entry::find($page->origin) ?: $page;
+            return $page;
+        })->groupBy('locale');
+
+        $henk = $this->locales->map(function ($localeData, $locale) use ($data) {
             $value = [];
 
+        dd($localeData, $locale, $data);
             foreach ($data as $item) {
+                //dd($item, $locale);
                 $localizedItem = $item->in($locale);
+                //dd($item, $locale);
                 $localizedItem->original = $item;
 
                 $value[] = $localizedItem;
             }
+            //dd($data);
 
             return $value;
         });
+        dd($henk);
+        return $henk;
     }
 }

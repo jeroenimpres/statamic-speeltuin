@@ -2,7 +2,6 @@
 
 namespace Impres\Translatee\Domain\Export\Exporters;
 
-use Statamic\Addons\TranslationManager\Helpers\Config;
 use Impres\Translatee\Domain\Export\Exporters\Support\XliffDocument;
 
 class Xliff
@@ -67,7 +66,7 @@ class Xliff
             }
         }
 
-        $filepath = Config::get('export_path').$locale.'.xlf';
+        $filepath = $this->config['export_path'].$locale.'.xlf';
         file_put_contents($filepath, $this->xliff->toDOM()->saveXML());
 
         return $filepath;

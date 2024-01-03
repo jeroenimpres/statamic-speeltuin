@@ -24,7 +24,7 @@ class CollectionCollector implements Collector
                 continue;
             }
 
-            $items = Entry::whereCollection($handle);
+            $items = Entry::whereCollection($handle)->all();
 
             foreach ($items as $entry) {
                 $entries = $entries->push($entry);

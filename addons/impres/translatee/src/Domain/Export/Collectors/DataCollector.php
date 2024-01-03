@@ -13,9 +13,9 @@ class DataCollector
      * @var array
      */
     protected $collectors = [
-        'global' => GlobalCollector::class,
+        //'global' => GlobalCollector::class,
         'collection' => CollectionCollector::class,
-        'taxonomy' => TaxonomyCollector::class,
+        //'taxonomy' => TaxonomyCollector::class,
     ];
 
     public function __construct($config, $options)

@@ -2,7 +2,6 @@
 
 namespace Impres\Translatee\Domain\Export;
 
-use Statamic\Addons\TranslationManager\Helpers\Config;
 use Impres\Translatee\Domain\Export\Exporters\Xliff;
 use Impres\Translatee\Domain\Export\Collectors\DataCollector;
 use Impres\Translatee\Domain\Export\Preparators\DataPreparator;
@@ -63,13 +62,12 @@ class Exporter
      */
     protected function clearExportsDirectory()
     {
-        $exportPath = Config::get('export_path');
-        $files = scandir($exportPath);
+        $files = scandir($this->config['export_path']);
         $filesToKeep = ['.', '..', '.DS_Store', '.gitkeep'];
 
         foreach ($files as $file) {
             if (!in_array($file, $filesToKeep)) {
-                unlink($exportPath . $file);
+                unlink($this->config['export_path'] . $file);
             }
         }
     }
