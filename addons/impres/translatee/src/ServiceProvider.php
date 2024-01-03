@@ -32,6 +32,7 @@ class ServiceProvider extends AddonServiceProvider
             Route::get('/{locale}/options', [TranslateeController::class, 'options'])->name('options');
             Route::get('/{locale}/export', [TranslateeController::class, 'export'])->name('export');
             Route::post('/{locale}/export', [TranslateeController::class, 'processExport'])->name('processExport');
+            Route::get('/{locale}/exportnu', [TranslateeController::class, 'processExport'])->name('processExport');
             Route::get('/{locale}/import', [TranslateeController::class, 'options'])->name('import');
             Route::post('/{locale}/import', [TranslateeController::class, 'options'])->name('processImport');
         }));

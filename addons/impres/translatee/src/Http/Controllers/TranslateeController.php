@@ -4,6 +4,7 @@ namespace Impres\Translatee\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Impres\Translatee\Domain\Export\Exporter;
 use Statamic\Facades\Config;
 use Statamic\Facades\Collection;
 use Statamic\Facades\GlobalSet;
@@ -55,7 +56,9 @@ class TranslateeController extends Controller
             'globals' => GlobalSet::all()
         ];
 
-        dump($params);
+        $exporter = new Exporter(['content' => 'everything']);
+
+        return response()->download($exporter->run());
 
         return view('translatee::options', $params);
     }
