@@ -1,0 +1,18 @@
+title: Verschrikkelijk
+blueprint: staat
+content: 'Maar echt'
+updated_by: 26981463-18c4-4b8c-b3cb-3ec2ec725bff
+updated_at: 1704271684
+localizations:
+  en:
+    title: Despicable
+    content: 'But really'
+    slug: despicable
+    updated_by: 26981463-18c4-4b8c-b3cb-3ec2ec725bff
+    updated_at: 1704271738
+  fr:
+    title: Euw
+    content: 'Oui, merde!'
+    slug: despicable
+    updated_by: 26981463-18c4-4b8c-b3cb-3ec2ec725bff
+    updated_at: 1704271757

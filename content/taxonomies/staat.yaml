@@ -1,3 +1,13 @@
 title: Staat
+preview_targets:
+  -
+    label: Term
+    url: '{permalink}'
+    refresh: true
+template: staat.index
+term_template: staat.show
+layout: layout
 sites:
   - default
+  - en
+  - fr
