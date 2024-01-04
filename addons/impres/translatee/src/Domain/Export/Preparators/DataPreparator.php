@@ -30,6 +30,8 @@ class DataPreparator
         'radio',
         'checkboxes',
         'level',
+        'start',
+        'replicator'
     ];
 
     /**

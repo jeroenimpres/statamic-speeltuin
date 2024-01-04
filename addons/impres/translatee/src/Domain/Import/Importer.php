@@ -44,6 +44,8 @@ class Importer
                     ->set($field, $value);
             }
 
+            $item['original']->slug($translations['slug']);
+
             $item['original']->save();
         }
     }

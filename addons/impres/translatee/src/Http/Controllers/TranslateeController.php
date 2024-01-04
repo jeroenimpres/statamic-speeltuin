@@ -92,13 +92,13 @@ class TranslateeController extends Controller
         try {
             $data = (new XliffParser(file_get_contents($request->file)))->parse();
         } catch (\Exception $e) {
-            return $this->errorResponse($e, 'Unable to read the file.');
+            return back()->with('error', 'Unable to read the file.');
         }
 
         try {
             $importer->import($data);
         } catch (\Exception $e) {
-            return $this->errorResponse($e, 'Unable to import the translations.');
+            return back()->with('error', 'Unable to import the translations.');
         }
 
         return back()->with('success', 'The file was imported!');

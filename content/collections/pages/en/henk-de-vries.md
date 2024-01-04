@@ -1,7 +1,9 @@
 ---
-id: c9194a35-d531-423f-a5e9-cefc7851612e
-blueprint: page
-title: 'Henk de Vries'
+id: fec810dd-f0bc-4d49-9a21-c840062d4cf6
+origin: c9194a35-d531-423f-a5e9-cefc7851612e
+title: 'Hank The Freeze'
+updated_by: 26981463-18c4-4b8c-b3cb-3ec2ec725bff
+updated_at: 1704293353
 page_builder:
   -
     id: lqwt2ia2
@@ -15,7 +17,7 @@ page_builder:
       -
         type: heading
         attrs:
-          level: 2
+          level: '2'
         content:
           -
             type: text
@@ -32,7 +34,7 @@ page_builder:
       -
         type: orderedList
         attrs:
-          start: 1
+          start: '1'
         content:
           -
             type: listItem
@@ -77,11 +79,11 @@ page_builder:
             type: text
             text: w
     type: article
-    enabled: true
+    enabled: '1'
   -
     id: lqwt2y2f
     type: divider
-    enabled: true
+    enabled: '1'
   -
     id: lqwt334r
     title: 'Als het avond is'
@@ -91,7 +93,7 @@ page_builder:
         content:
           -
             type: text
-            text: 'Bij het vallen van de nacht, fluister ik nu zacht “Hoor je mij misschien?”.'
+            text: 'Falling of the night'
       -
         type: bulletList
         content:
@@ -103,7 +105,7 @@ page_builder:
                 content:
                   -
                     type: text
-                    text: Hooi
+                    text: Hiiiii
           -
             type: listItem
             content:
@@ -112,7 +114,7 @@ page_builder:
                 content:
                   -
                     type: text
-                    text: Hooooi
+                    text: Hiiiiiiiiiiiiii
           -
             type: listItem
             content:
@@ -121,7 +123,7 @@ page_builder:
                 content:
                   -
                     type: text
-                    text: Hooooooi
+                    text: Hiiiaaaaaaiiiiii
           -
             type: listItem
             content:
@@ -130,16 +132,10 @@ page_builder:
                 content:
                   -
                     type: text
-                    text: Hooooiii
+                    text: Hiiisdfsdfsdfsdafi
     type: text_columns
-    enabled: true
-seo_noindex: false
-seo_nofollow: false
-seo_canonical_type: entry
-sitemap_change_frequency: weekly
-sitemap_priority: 0.5
-updated_by: 26981463-18c4-4b8c-b3cb-3ec2ec725bff
-updated_at: 1704380568
+    enabled: '1'
+slug: henk-de-vries
 seo_title: 'Pagina over Henk de Vries'
 seo_description: 'Echt een topgozer, lees alles erover.'
 ---

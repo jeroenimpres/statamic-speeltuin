@@ -72,12 +72,9 @@ class FieldPreparator
      * @param array $fieldData
      * @return void
      */
-    protected function handleFieldTypes($field, $fieldData, $untranslatableFields = [])
+    protected function handleFieldTypes($field, $fieldData, $nonTranslatableFields = [])
     {
         $fieldType = $field->getType();
-        if( in_array($fieldType, $untranslatableFields) ) {
-            return;
-        }
 
         switch ($fieldType) {
             case 'array':
@@ -85,19 +82,19 @@ class FieldPreparator
             case 'list':
             case 'tags':
             case 'checkbox':
-                $this->fields = (new ArrayField($this->fields))->map($fieldData);
+                $this->fields = (new ArrayField($this->fields))->map($fieldData, $nonTranslatableFields);
                 break;
 
             case 'table':
             case 'replicator':
-                $this->fields = (new ReplicatorField($this->fields))->map($fieldData, $untranslatableFields);
+                $this->fields = (new ReplicatorField($this->fields))->map($fieldData, $nonTranslatableFields);
                 break;
 
             // "Default" fields include:
             // - Bard
             // - Regular string values
             default:
-                $this->fields = (new StringField($this->fields))->map($fieldData);
+                $this->fields = (new StringField($this->fields))->map($fieldData, $nonTranslatableFields);
                 break;
         }
     }

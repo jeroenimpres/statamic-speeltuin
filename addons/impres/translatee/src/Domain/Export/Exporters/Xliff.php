@@ -83,7 +83,7 @@ class Xliff
     protected function addUnit($field)
     {
         // Apply the original value.
-        $this->xliff->file()->body()->unit(true)->setAttribute('id', $field['name'])->source(true)->setTextContent($field['original']);
+        $this->xliff->file()->body()->unit(true)->setAttribute('id', $field['name'])->setAttribute('translate', $field['translate'] ?? 'yes')->source(true)->setTextContent($field['original']);
 
         // Apply the translated value.
         $this->xliff->file()->body()->unit()->target(true)->setTextContent($field['localized']);
