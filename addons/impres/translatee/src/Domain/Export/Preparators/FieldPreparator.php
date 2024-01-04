@@ -5,7 +5,6 @@ namespace Impres\Translatee\Domain\Export\Preparators;
 use Impres\Translatee\Domain\Export\Preparators\Fields\ArrayField;
 use Impres\Translatee\Domain\Export\Preparators\Fields\ReplicatorField;
 use Impres\Translatee\Domain\Export\Preparators\Fields\StringField;
-use Impres\Translatee\Domain\Export\Preparators\BaseField;
 use Statamic\Facades\Config;
 
 class FieldPreparator
@@ -23,14 +22,13 @@ class FieldPreparator
      * @param object $item
      * @return array
      */
-    public function prepare($item)
+    public function prepare($item, $nonTranslatableFields = [])
     {
         // Reset the fields for each item.
         $this->fields = [];
 
-        $localizedItem = $item->in(Config::getDefaultLocale());
         // Items from a global set are Variables, which do not have a locale directly
-        if(class_basename($item->original) !== 'Variables') {
+        if(class_basename($item->original) === 'Variables') {
             $localizedItem = $item;
         } else {
             $localizedItem = $item->in(Config::getDefaultLocale());
@@ -46,22 +44,6 @@ class FieldPreparator
             if(!$fieldName) {
                 continue;
             }
-//
-//            dd($data,
-//                $item->get('blueprint'),
-//                $item->get('title'),
-//                $item->get('updated_by'),
-//                $item->get('updated_at'),
-//                $item->get('seo_noindex'),
-//                $item->get('seo_nofollow'),
-//                $item->get('seo_canonical_type'),
-//                $item->get('sitemap_change_frequency'),
-//                $item->get('sitemap_priority'),
-//                $item->get('page_builder'),
-//                $item->get('original'),
-//                $item->get('slug')
-//            );
-
             $field = new BaseField($item, $fieldName);
 
             // Determine whether the field should be translated, or skipped.
@@ -69,20 +51,15 @@ class FieldPreparator
                 continue;
             }
 
-
-
             // Handle the various field types. They all store the actual
             // values in different ways, so we have to map them into a
             // common structure before exporting them.
-
-            //dd($item->get($fieldName));
-
             $this->handleFieldTypes($field, [
                 'original_value' => $value,
                 'localized_value' => $item->get($fieldName) ?: '',
                 'field_name' => $fieldName,
                 'field_type' => $field->getType(),
-            ]);
+            ], $nonTranslatableFields);
         }
 
         return $this->fields;
@@ -95,16 +72,14 @@ class FieldPreparator
      * @param array $fieldData
      * @return void
      */
-    protected function handleFieldTypes($field, $fieldData)
+    protected function handleFieldTypes($field, $fieldData, $untranslatableFields = [])
     {
-        switch ($field->getType()) {
-            // Untranslatable fields. These do not include the
-            // actual label in the page data.
-            case 'suggest':
-            case 'radio':
-            case 'checkboxes':
-                return;
+        $fieldType = $field->getType();
+        if( in_array($fieldType, $untranslatableFields) ) {
+            return;
+        }
 
+        switch ($fieldType) {
             case 'array':
             case 'collection':
             case 'list':
@@ -115,7 +90,7 @@ class FieldPreparator
 
             case 'table':
             case 'replicator':
-                $this->fields = (new ReplicatorField($this->fields))->map($fieldData);
+                $this->fields = (new ReplicatorField($this->fields))->map($fieldData, $untranslatableFields);
                 break;
 
             // "Default" fields include:

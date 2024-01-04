@@ -3,7 +3,6 @@
 namespace Impres\Translatee\Domain\Export\Preparators;
 
 use Statamic\Facades\Config;
-use Statamic\Facades\Entry;
 use Statamic\Facades\URL;
 
 class DataPreparator
@@ -22,6 +21,16 @@ class DataPreparator
      * @var array
      */
     protected $locales;
+
+    protected array $nonTranslatableFields = [
+        'id',
+        'enabled',
+        'type',
+        'suggest',
+        'radio',
+        'checkboxes',
+        'level',
+    ];
 
     /**
      * Initiate the preparator.
@@ -46,8 +55,6 @@ class DataPreparator
     {
         $split = $this->splitIntoLocales($data);
 
-//        dd($split);
-
         $henk = $split->map(function ($items, $locale) {
 
             foreach ($items as $index => $item) {
@@ -61,6 +68,9 @@ class DataPreparator
 
             return $items;
         });
+
+        //dd("asdfsadf", $henk);
+
         return $henk;
     }
 
@@ -75,7 +85,7 @@ class DataPreparator
                 'uri' => $item->locale().$item->original->uri(),
                 'url' => URL::prependSiteUrl($item->original->uri(), $item->locale()),
             ],
-            'fields' => $this->fieldPreparator->prepare($item),
+            'fields' => $this->fieldPreparator->prepare($item, $this->nonTranslatableFields),
         ];
     }
 
@@ -88,27 +98,8 @@ class DataPreparator
     protected function splitIntoLocales($data)
     {
         return $data->map(function($page) {
-            $page->original = Entry::find($page->origin) ?: $page;
+            $page->original = $page->origin() ?: $page;
             return $page;
         })->groupBy('locale');
-
-        $henk = $this->locales->map(function ($localeData, $locale) use ($data) {
-            $value = [];
-
-        dd($localeData, $locale, $data);
-            foreach ($data as $item) {
-                //dd($item, $locale);
-                $localizedItem = $item->in($locale);
-                //dd($item, $locale);
-                $localizedItem->original = $item;
-
-                $value[] = $localizedItem;
-            }
-            //dd($data);
-
-            return $value;
-        });
-        dd($henk);
-        return $henk;
     }
 }

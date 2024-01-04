@@ -20,3 +20,5 @@ yarn-error.log
 /.idea/php.xml
 /.idea/statamic-speeltuin.iml
 /.idea/vcs.xml
+/.ddev/homeadditions/.composer/auth.json
+/addons/impres/translatee/src/Domain/Export/exports/*

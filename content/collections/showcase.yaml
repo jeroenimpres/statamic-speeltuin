@@ -1,0 +1,10 @@
+title: Showcase
+sites:
+  - default
+  - en
+  - fr
+propagate: false
+revisions: false
+date_behavior:
+  past: public
+  future: private

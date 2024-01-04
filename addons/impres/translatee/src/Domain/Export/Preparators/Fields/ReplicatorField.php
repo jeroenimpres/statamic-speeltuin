@@ -14,7 +14,7 @@ class ReplicatorField extends Field
      * @param array $data
      * @return array
      */
-    public function map($data)
+    public function map($data, $untranslatableFields = [])
     {
         $fields = $this->flatten($data['original_value'], $data['field_name']);
 
@@ -31,6 +31,10 @@ class ReplicatorField extends Field
         foreach ($fields as $path => $value) {
             $localized = $localizedFields[$path] ?? '';
 
+            if( in_array(Str::afterLast($path, '.'), $untranslatableFields)) {
+                continue;
+            }
+
             if (Str::endsWith($path, '.type')) {
                 $localized = $value;
             }
@@ -42,6 +46,7 @@ class ReplicatorField extends Field
                 'localized' => $localized,
             ];
         }
+
 
         return $this->fields;
     }
