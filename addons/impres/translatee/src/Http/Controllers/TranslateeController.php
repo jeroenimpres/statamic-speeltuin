@@ -4,10 +4,8 @@ namespace Impres\Translatee\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Statamic\Facades\Config;
-use Statamic\Facades\Collection;
-use Statamic\Facades\GlobalSet;
-use Statamic\Facades\Taxonomy;
+use Illuminate\Support\Facades\Validator;
+use Statamic\Facades\Addon;
 use Statamic\Http\Controllers\Controller;
 use Impres\Translatee\Actions\GetAdditionalSiteAction;
 use Impres\Translatee\Actions\GetDefaultSiteAction;
@@ -20,10 +18,7 @@ class TranslateeController extends Controller
 {
     public function index()
     {
-        return view('translatee::index', [
-            'defaultLocale' => app(GetDefaultSiteAction::class)->execute(),
-            'locales' => app(GetAdditionalSiteAction::class)->execute(),
-        ]);
+        return view('translatee::index');
     }
 
     public function exportFiles(Request $request)
@@ -44,21 +39,23 @@ class TranslateeController extends Controller
 
     public function processImport(Request $request, Importer $importer)
     {
+//        $addon = Addon::get('impres/translatee');
+//        if ($addon->edition() !== 'pro') {
+//            return back()->with('error', __('Please buy a license to use the import feature.'));
+//        }
 
-//        $validatedData = $request->validate([
-//            'document' => 'required|ends_with:.pdf',
-//        ]);
-
-        // The built in file validation doesn't work for some reason, so we have to manually
-        // validate the file type.
-        if (!in_array($request->translation_file->getClientOriginalExtension(), ['xlf', 'xliff'])) {
-            return back()->withErrors(['file' => 'The file must be of the type .xlf or .xliff.']);
+        try {
+            Validator::make($request->all(), [
+                'translation_file' => 'required|extensions:xlf,xliff|mimetypes:application/x-xliff+xml'
+            ])->validate();
+        } catch (\Exception $e) {
+            return back()->with('error', __('Invalid file type. Please upload a .xlf or .xliff file.'));
         }
 
         try {
             $data = (new XliffParser(file_get_contents($request->translation_file)))->parse();
         } catch (\Exception $e) {
-            return back()->with('error', 'Unable to read the file.');
+            return back()->with('error', __('Unable to read the uploaded file.'));
         }
 
         try {
@@ -67,6 +64,6 @@ class TranslateeController extends Controller
             return back()->with('error', 'Unable to import the translations.');
         }
 
-        return redirect(cp_route('translatee.index'))->with('success', 'The file was imported!');
+        return redirect(cp_route('translatee.index'))->with('success', __('Translations imported successfully!'));
     }
 }

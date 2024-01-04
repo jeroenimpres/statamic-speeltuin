@@ -406,6 +406,7 @@ class XliffUnitsGroup extends XliffNode
  *
  * @method XliffNode source()
  * @method XliffNode target()
+ * @method XliffNode note()
  */
 class XliffUnit extends XliffNode
 {
@@ -413,5 +414,6 @@ class XliffUnit extends XliffNode
     protected $supportedNodes = [
         'source' => 'Impres\Translatee\Domain\Export\Exporters\Support\XliffNode',
         'target' => 'Impres\Translatee\Domain\Export\Exporters\Support\XliffNode',
+        'note' => 'Impres\Translatee\Domain\Export\Exporters\Support\XliffNode',
     ];
 }

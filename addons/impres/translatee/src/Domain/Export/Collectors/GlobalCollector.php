@@ -14,7 +14,11 @@ class GlobalCollector implements Collector
      */
     public function all($config)
     {
-        return GlobalSet::all();
+        $allGlobalSetVariables = collect();
+        foreach(GlobalSet::all() as $globalSet) {
+            $allGlobalSetVariables = $allGlobalSetVariables->push($globalSet->inDefaultSite());
+        }
+        return $allGlobalSetVariables;
     }
 
     /**
@@ -25,6 +29,6 @@ class GlobalCollector implements Collector
      */
     public function find($handle)
     {
-        return GlobalSet::find($handle);
+        return GlobalSet::findByHandle($handle)->inDefaultSite();
     }
 }

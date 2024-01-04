@@ -3,10 +3,10 @@
 namespace Impres\Translatee;
 
 use Illuminate\Support\Facades\Route;
-use Impres\Translatee\Http\Controllers\TranslateeController;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Facades\CP\Nav;
 use Statamic\Statamic;
+use Impres\Translatee\Http\Controllers\TranslateeController;
 
 class ServiceProvider extends AddonServiceProvider
 {

@@ -22,6 +22,7 @@ class DataPreparator
      */
     protected $locales;
 
+    // TODO: This pro'ly isn't the best place
     protected array $nonTranslatableFields = [
         'id',
         'enabled',
@@ -34,12 +35,7 @@ class DataPreparator
         'replicator'
     ];
 
-    /**
-     * Initiate the preparator.
-     *
-     * @param array $options
-     */
-    public function __construct($options)
+    public function __construct()
     {
         $this->fieldPreparator = new FieldPreparator;
         $this->locales = collect(Config::getLocales())->flatMap(function ($locale) {
@@ -55,9 +51,7 @@ class DataPreparator
      */
     public function prepare($data)
     {
-        $split = $this->splitIntoLocales($data);
-
-        $henk = $split->map(function ($items, $locale) {
+        return $this->splitIntoLocales($data)->map(function ($items, $locale) {
 
             foreach ($items as $index => $item) {
                 // An item can be a Global, Term or Collection
@@ -70,10 +64,6 @@ class DataPreparator
 
             return $items;
         });
-
-        //dd("asdfsadf", $henk);
-
-        return $henk;
     }
 
     private function prepareEntryOrTermItems($item, $locale)
@@ -99,6 +89,7 @@ class DataPreparator
      */
     protected function splitIntoLocales($data)
     {
+        // TODO: Deze functie werkt niet voor Globalsets (origin() is geen functie) en mogelijk ook niet voor Terms
         return $data->map(function($page) {
             $page->original = $page->origin() ?: $page;
             return $page;

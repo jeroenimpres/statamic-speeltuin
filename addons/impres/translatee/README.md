@@ -23,7 +23,7 @@ It hides the no-translate data by default, so you don't have to worry about it. 
 show from which page the source-text is coming from.
 
 Loca Studio and XLIFFTOOL do, but they are showing the no-translate data as well. Which is annoying and confusing.
-
+Even though we have added a note not to translate it.
 
 
 ## How to Install
@@ -35,9 +35,11 @@ or run the following command from your project root:
 composer require impres/translatee
 ```
 
+
 ## How to Use
 
 Life is short. Drive fast and leave a sexy corpse.
+
 
 ## A random Parks and Rec quote
 “_I once worked with a guy for three years and never learned his name. Best friend I ever had. We still never talk sometimes._”

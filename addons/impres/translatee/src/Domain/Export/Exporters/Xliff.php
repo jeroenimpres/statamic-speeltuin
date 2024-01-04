@@ -85,6 +85,9 @@ class Xliff
         // Apply the original value.
         $this->xliff->file()->body()->unit(true)->setAttribute('id', $field['name'])->setAttribute('translate', $field['translate'] ?? 'yes')->source(true)->setTextContent($field['original']);
 
+        if($field['translate'] === 'no'){
+            $this->xliff->file()->body()->unit()->note(true)->setTextContent("Please do not translate this field. It is used for internal purposes only.");
+        }
         // Apply the translated value.
         $this->xliff->file()->body()->unit()->target(true)->setTextContent($field['localized']);
     }

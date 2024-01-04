@@ -1,14 +1,24 @@
 {
     "name": "impres/translatee",
+    "description": "Translatee is a Statamic addon that allows you to translate your content using XLIFF files.",
     "autoload": {
         "psr-4": {
             "Impres\\Translatee\\": "src"
         }
     },
+    "authors": [
+        {
+            "name": "IMPRES Online Impact B.V."
+        }
+    ],
+    "support": {
+        "email": "support@impres.nl"
+    },
     "extra": {
         "statamic": {
+            "editions": ["free", "pro"],
             "name": "Translatee",
-            "description": "Translatee addon"
+            "description": "Translatee is a Statamic addon that allows you to translate your content using XLIFF files."
         },
         "laravel": {
             "providers": [

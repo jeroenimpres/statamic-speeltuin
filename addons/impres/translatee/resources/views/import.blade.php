@@ -19,7 +19,8 @@
         <form method="post" action="{{ cp_route('translatee.import') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="flex items-center">
-                <input type="file" name="translation_file">
+                <label for="xliff_file" class="mr-2 sr-only">{{ __('File') }}</label>
+                <input type="file" id="xliff_file" name="translation_file" accept="application/x-xliff+xml">
                 <input type="submit" class="btn btn-primary" value="{{ __('Upload and import') }}">
             </div>
         </form>

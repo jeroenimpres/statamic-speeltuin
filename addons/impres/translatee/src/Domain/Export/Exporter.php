@@ -18,15 +18,14 @@ class Exporter
             'export_path' => __DIR__ .'/exports/',
         ];
         $this->dataCollector = new DataCollector($this->config, $options);
-        $this->dataPreparator = new DataPreparator($options);
+        $this->dataPreparator = new DataPreparator();
     }
 
     public function run()
     {
-        // Clear out the result directory.
         $this->clearExportsDirectory();
 
-        $data = $this->dataCollector->collect($this->config);
+        $data = $this->dataCollector->collect();
         $data = $this->dataPreparator->prepare($data);
 
         $files = [];
