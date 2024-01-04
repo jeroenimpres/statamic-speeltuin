@@ -1,5 +1,5 @@
 @extends('statamic::layout')
-@section('title', __('Translatee') )
+@section('title', __('Import translations') )
 
 @section('content')
 
@@ -12,28 +12,16 @@
                 <span>{{ __('Translatee') }}</span>
             </a>
         </div>
-        <h1>{{ $title }}</h1>
     </header>
 
-    <h3 class="little-heading pl-0 mb-2">{{ __('Please choose what you want to export') }}</h3>
-
-    <div class="card p-0 my-4">
-        <form method="post" action="{{ cp_route('translatee.import', $locale) }}" enctype="multipart/form-data">
+    <div class="card p-4 content">
+        <h3>{{ __('Select the .xliff or .xlf file that you want to import') }}</h3>
+        <form method="post" action="{{ cp_route('translatee.import') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
-
-            <div class="form-group select-fieldtype width-100 ">
-                <div class="field-inner">
-                    <label class="block">File</label>
-
-                    <small class="help-block">
-                        <p>Must be a .xlf or .xliff file.</p>
-                    </small>
-
-                    <input type="file" name="file">
-                </div>
+            <div class="flex items-center">
+                <input type="file" name="translation_file">
+                <input type="submit" class="btn btn-primary" value="{{ __('Upload and import') }}">
             </div>
-
-            <input type="submit" class="btn btn-primary" value="Import" style="margin-top:20px;">
         </form>
     </div>
 @endsection

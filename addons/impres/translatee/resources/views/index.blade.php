@@ -8,24 +8,28 @@
         <p>What do you want to say today?</p>
     </header>
 
-    <h3 class="little-heading pl-0 mb-2">{{ __('Please choose a language') }}</h3>
-    <p class="text-sm">
-        {{ __('Please choose a language that you want to work with.') }}
-        {!! sprintf(__('Your default language is %s, it uses the locale %s.'), "<strong>" . $defaultLocale['name'] . "</strong>", "<code>" . $defaultLocale['locale'] . "</code>") !!}
-        {{ sprintf(__('As this will be the base for the other translations, you will not be able to export and import %s.'), $defaultLocale['name']) }}
-    </p>
-    <div class="card p-0 my-4">
-        <table class="data-table">
-            @foreach ($locales as $locale => $site)
-                <tr>
-                    <td>
-                        <div class="flex items-center">
-                            <div class="w-4 h-4 mr-4">@cp_svg('icons/light/content-writing')</div>
-                            <a href="{{ cp_route('translatee.options', $locale) }}">{{ $site['name'] }}</a>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        </table>
+    <div class="card p-4 content">
+        <h3>{{ __('Please choose one of two actions.') }}</h3>
+        <div class="flex flex-wrap">
+            <a href="{{ cp_route('translatee.export') }}" class="w-full lg:w-1/2 p-4 md:flex items-start hover:bg-gray-200 rounded-md group">
+                <div class="h-8 w-8 mr-4 text-gray-800">
+                    @cp_svg('icons/plump/file-zip')
+                </div>
+                <div class="text-blue flex-1 mb-4 md:mb-0 md:mr-6">
+                    <h3>{{ __('Export') }}</h3>
+                    <p>{{ __('Export .xliff files for all available languages in this installation. It will contain collections, terms and globals.') }}</p>
+                    <p class="text-xs">{{ __('Please and thank you.') }}</p>
+                </div>
+            </a>
+            <a href="{{ cp_route('translatee.import') }}" class="w-full lg:w-1/2 p-4 md:flex items-start hover:bg-gray-200 rounded-md group">
+                <div class="h-8 w-8 mr-4 text-gray-800">
+                    @cp_svg('icons/plump/text-formatting-shadow-text')
+                </div>
+                <div class="text-blue flex-1 mb-4 md:mb-0 md:mr-6">
+                    <h3>{{ __('Import XLIFF file') }}</h3>
+                    <p class="text-xs">{{ __('Import the XLIFF file that contains your translated content') }}</p>
+                </div>
+            </a>
+        </div>
     </div>
 @endsection
