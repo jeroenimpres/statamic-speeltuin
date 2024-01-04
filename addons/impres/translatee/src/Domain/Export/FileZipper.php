@@ -2,7 +2,6 @@
 
 namespace Impres\Translatee\Domain\Export;
 
-use Statamic\Addons\TranslationManager\Helpers\Config;
 
 class FileZipper
 {
